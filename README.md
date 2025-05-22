@@ -46,212 +46,53 @@ Dengan :
 | --- | --- |
 | 2768 | 10 |
 
+### Menangani duplicate value
+![Cek Duplikasi](images/cek_dupikat.png)
+Dari hasil di atas, terlihat bahwa tidak ada data yang terduplikasi.
+### Menangani Missing Value
+![Cek Missing Value](images/cek_missing_value.png)
+dari output diatas diketahui bahwa tidak terdapat missing value pada dataset yang digunakan, tetapi harus dicek apakah terdapat nilai nol pada tiap kolom karena tidak mungkin nilai pada kolom Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction, Age. Karena bisa saja missing value nya diubah menjadi 0, hal ini dapat mempengaruhi peforma machine learning.
+### Menangani Outlier
+![Cek Nilai 0](images/cek_nilai_0.png)
+Setelah dicek ternyata terdapat banyak sekali yang bernilai 0, karena terdapat banyak sekali nilai 0 dan akan sangat berpengaruh ke peforma machine learning jika semuanya di drop. Maka, nilai 0 disini akan di ganti dengan nilai rata-rata pada setiap fitur. Terutama pada fitur Insulin, BMI, Glucose, dan SkinThickness yang tidak mungkin bernilai 0.
+### Mengganti nilai 0 dengan nilai rata-rata
+![Mengganti nilai 0](images/ganti_nilai_0.png)
 
+### Mengecek Outlier
+![Mengecek Outlier](images/Mengecek_Outlier.png)
 
+Hasilnya adalah :
+1. Pregnancies
+   Dapat dilihat mayoritas berada di angka 1-6. Terdapat outlier yaitu diatas 13. Tetapi, outlier ini tidak akan dihapus karena dalam beberapa kasus bisa saja wanita melahirkan lebih dari 13 kali.
+2. Glucose
+   Pada grafik Glucose terlihat normal tidak adanya outlier
+3. BloodPressure
+   Terdapat nilai nol, yang tidak masuk akal sebagai tekanan darah, kemungkinan data tidak valid atau hilang. Maka outlier ini akan diisi dengan nila rata-rata dari fiturnya.
+4. SkinThickness
+   Ada nilai nol dan outlier besar di atas 100 mm, yang jarang terjadi dalam praktik medis. Karena rentang rata-rata dalam dunia medis adalah 0-80 mm. oleh karena itu outlier ini akan diisi dengan nila rata-rata dari fiturnya.
+5. Insulin
+    Banyak nilai outlier sangat tinggi (hingga lebih dari 800). 
+6. BMI
+    Ada outlier di atas 50, bahkan mendekati 80. Karena BMI > 70  saja biasanya sudah dianggap sangat tinggi. Maka outlier ini akan diisi dengan nila rata-rata dari fiturnya.
+7. DiabetesPedigreeFunction
+    Terdapat Outlier di atas 2 menunjukkan risiko genetik tinggi. Maka outlier ini akan diisi dengan nila rata-rata dari fiturnya.
+8. Age
+    Tidak terlihat adanya keanehan dari distribusi data di fitur Age.
+
+## Deskripsi Statistik dari Data
+|Id|	Pregnancies|	Glucose	|BloodPressure|	SkinThickness|	Insulin|	BMI	|DiabetesPedigreeFunction|	Age|	Outcome|
+|---|---|---|---|---|---|---|---|---|---|
+|count	|2768.000000|	2768.000000|	2768.000000|	2768.000000|	2.768000e+03	2768.000000	2.768000e+03	2768.000000	2768.000000	2768.000000
+mean	1384.500000	3.742775	121.890118	72.256430	2.670450e+01	118.628647	3.255548e+01	0.471193	33.132225	0.343931
+std	799.197097	3.323801	30.501027	12.007473	1.318295e-12	89.681553	4.121892e-13	0.325669	11.777230	0.475104
+min	1.000000	0.000000	44.000000	24.000000	2.670450e+01	14.000000	3.255548e+01	0.078000	21.000000	0.000000
+25%	692.750000	1.000000	99.000000	64.000000	2.670450e+01	80.127890	3.255548e+01	0.244000	24.000000	0.000000
+50%	1384.500000	3.000000	118.000000	72.000000	2.670450e+01	80.127890	3.255548e+01	0.375000	29.000000	0.000000
+75%	2076.250000	6.000000	141.000000	80.000000	2.670450e+01	130.000000	3.255548e+01	0.624000	40.000000	1.000000
+max	2768.000000	17.000000	199.000000	122.000000	2.670450e+01	846.000000	3.255548e+01	2.420000	81.0
 ## Referensi
 ---
 1. Afriani, T., & Pudiyanti, P. (2020). Peran Teknologi Informasi dalam Perawatan Diabetes Mellitus. Nursing Current: Jurnal Keperawatan. https://doi.org/10.19166/NC.V8I1.2722
 2. Rahmini, J. A., & Rahayuningtyas, D. K. (2020, Nov). Inovasi Kesehatan Terkini Sebagai Strategi Efektif Pada Manajemen Diabetes Di Masa Pandemi. Jurnal Keperawatan, 5(2). https://doi.org/10.32668/jkep.v5i2.453
 3. Ardila, M., S. Humolungo, D. T., Amukti, D. P., & Akrom. (2024, Jun). PROMOSI KESEHATAN PENCEGAHAN DAN PENGENDALIAN DIABETES MELITUS PADA REMAJA. J . A . I : Jurnal Abdimas Indonesia, 4(2). https://doi.org/10.53769/jai.v4i2.729
 4. Wahidin, M. Achadi, A. DKK. (2024). Projection of diabetes morbidity and mortality till 2045 in Indonesia based on risk factors and NCD prevention and control programs. Scientific report. https://www.nature.com/articles/s41598-024-54563-2
-
-
-
-
-
-
-
-
-
-
-
-
-[![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
-
-[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
-
-Dillinger is a cloud-enabled, mobile-ready, offline-storage compatible,
-AngularJS-powered HTML5 Markdown editor.
-
-- Type some Markdown on the left
-- See HTML in the right
-- ✨Magic ✨
-
-## Features
-
-- Import a HTML file and watch it magically convert to Markdown
-- Drag and drop images (requires your Dropbox account be linked)
-- Import and save files from GitHub, Dropbox, Google Drive and One Drive
-- Drag and drop markdown and HTML files into Dillinger
-- Export documents as Markdown, HTML and PDF
-
-Markdown is a lightweight markup language based on the formatting conventions
-that people naturally use in email.
-As [John Gruber] writes on the [Markdown site][df1]
-
-> The overriding design goal for Markdown's
-> formatting syntax is to make it as readable
-> as possible. The idea is that a
-> Markdown-formatted document should be
-> publishable as-is, as plain text, without
-> looking like it's been marked up with tags
-> or formatting instructions.
-
-This text you see here is *actually- written in Markdown! To get a feel
-for Markdown's syntax, type some text into the left window and
-watch the results in the right.
-
-## Tech
-
-Dillinger uses a number of open source projects to work properly:
-
-- [AngularJS] - HTML enhanced for web apps!
-- [Ace Editor] - awesome web-based text editor
-- [markdown-it] - Markdown parser done right. Fast and easy to extend.
-- [Twitter Bootstrap] - great UI boilerplate for modern web apps
-- [node.js] - evented I/O for the backend
-- [Express] - fast node.js network app framework [@tjholowaychuk]
-- [Gulp] - the streaming build system
-- [Breakdance](https://breakdance.github.io/breakdance/) - HTML
-to Markdown converter
-- [jQuery] - duh
-
-And of course Dillinger itself is open source with a [public repository][dill]
- on GitHub.
-
-## Installation
-
-Dillinger requires [Node.js](https://nodejs.org/) v10+ to run.
-
-Install the dependencies and devDependencies and start the server.
-
-```sh
-cd dillinger
-npm i
-node app
-```
-
-For production environments...
-
-```sh
-npm install --production
-NODE_ENV=production node app
-```
-
-## Plugins
-
-Dillinger is currently extended with the following plugins.
-Instructions on how to use them in your own application are linked below.
-
-| Plugin | README |
-| ------ | ------ |
-| Dropbox | [plugins/dropbox/README.md][PlDb] |
-| GitHub | [plugins/github/README.md][PlGh] |
-| Google Drive | [plugins/googledrive/README.md][PlGd] |
-| OneDrive | [plugins/onedrive/README.md][PlOd] |
-| Medium | [plugins/medium/README.md][PlMe] |
-| Google Analytics | [plugins/googleanalytics/README.md][PlGa] |
-
-## Development
-
-Want to contribute? Great!
-
-Dillinger uses Gulp + Webpack for fast developing.
-Make a change in your file and instantaneously see your updates!
-
-Open your favorite Terminal and run these commands.
-
-First Tab:
-
-```sh
-node app
-```
-
-Second Tab:
-
-```sh
-gulp watch
-```
-
-(optional) Third:
-
-```sh
-karma test
-```
-
-#### Building for source
-
-For production release:
-
-```sh
-gulp build --prod
-```
-
-Generating pre-built zip archives for distribution:
-
-```sh
-gulp build dist --prod
-```
-
-## Docker
-
-Dillinger is very easy to install and deploy in a Docker container.
-
-By default, the Docker will expose port 8080, so change this within the
-Dockerfile if necessary. When ready, simply use the Dockerfile to
-build the image.
-
-```sh
-cd dillinger
-docker build -t <youruser>/dillinger:${package.json.version} .
-```
-
-This will create the dillinger image and pull in the necessary dependencies.
-Be sure to swap out `${package.json.version}` with the actual
-version of Dillinger.
-
-Once done, run the Docker image and map the port to whatever you wish on
-your host. In this example, we simply map port 8000 of the host to
-port 8080 of the Docker (or whatever port was exposed in the Dockerfile):
-
-```sh
-docker run -d -p 8000:8080 --restart=always --cap-add=SYS_ADMIN --name=dillinger <youruser>/dillinger:${package.json.version}
-```
-
-> Note: `--capt-add=SYS-ADMIN` is required for PDF rendering.
-
-Verify the deployment by navigating to your server address in
-your preferred browser.
-
-```sh
-127.0.0.1:8000
-```
-
-## License
-
-MIT
-
-**Free Software, Hell Yeah!**
-
-[//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
-
-   [dill]: <https://github.com/joemccann/dillinger>
-   [git-repo-url]: <https://github.com/joemccann/dillinger.git>
-   [john gruber]: <http://daringfireball.net>
-   [df1]: <http://daringfireball.net/projects/markdown/>
-   [markdown-it]: <https://github.com/markdown-it/markdown-it>
-   [Ace Editor]: <http://ace.ajax.org>
-   [node.js]: <http://nodejs.org>
-   [Twitter Bootstrap]: <http://twitter.github.com/bootstrap/>
-   [jQuery]: <http://jquery.com>
-   [@tjholowaychuk]: <http://twitter.com/tjholowaychuk>
-   [express]: <http://expressjs.com>
-   [AngularJS]: <http://angularjs.org>
-   [Gulp]: <http://gulpjs.com>
-
-   [PlDb]: <https://github.com/joemccann/dillinger/tree/master/plugins/dropbox/README.md>
-   [PlGh]: <https://github.com/joemccann/dillinger/tree/master/plugins/github/README.md>
-   [PlGd]: <https://github.com/joemccann/dillinger/tree/master/plugins/googledrive/README.md>
-   [PlOd]: <https://github.com/joemccann/dillinger/tree/master/plugins/onedrive/README.md>
-   [PlMe]: <https://github.com/joemccann/dillinger/tree/master/plugins/medium/README.md>
-   [PlGa]: <https://github.com/RahulHP/dillinger/blob/master/plugins/googleanalytics/README.md>
