@@ -5,7 +5,7 @@ Peningkatan penderita diabetes di Indonesia disebabkan oleh beberapa faktor, ter
 
 Pada jurnal “Projection of diabetes morbidity and mortality till 2045 in Indonesia based on risk factors and NCD prevention and control programs” yang ditulis oleh Wahidin, mugi dkk. Menurut penelitian yang mengambil data dari Riset Kesehatan Dasar (Riskesdas), BPJS Kesehatan, program Penyakit Tidak Menular (PTM), serta Kementerian Kesehatan. Penderita diabetes di Indonesia diperkirakan akan meningkat dari 9,19% pada tahun 2020 (setara dengan 18,69 juta kasus) menjadi 16,09% pada tahun 2045 (sekitar 40,7 juta kasus)[4]. 
 
-Melihat fenomena ini diperlukannya inovasi yang bisa mencegah dan mendeteksi diabetes sejak dini. Salah satu pendekatan nya yaitu, dengan menggunakan machine learning untuk memprediksi dan mengidentifikasi potensi risiko penyakit diabetes berdasarkan data kesehatan individu. Pada projek ini menggunakan beberapa pendekatan algoritma machine learning antara lain : Random Forest, XGBoost, SVM, dan KNN. 
+Melihat fenomena ini diperlukannya inovasi yang bisa mencegah dan mendeteksi diabetes sejak dini. Salah satu pendekatan nya yaitu, dengan menggunakan machine learning untuk memprediksi dan mengidentifikasi potensi risiko penyakit diabetes berdasarkan data kesehatan individu. Pada projek ini menggunakan beberapa pendekatan algoritma machine learning antara lain : Random Forest, Decision Tree, AdaBoosting, SVM, dan KNN. 
 
 ## Business Understanding
 ### Problem Statements
@@ -285,15 +285,97 @@ Nilai glukosa yang tinggi sangat berkorelasi dengan kondisi diabetes. Distribusi
    - Distribusi Insulin sangat menyebar dan memiliki banyak nilai nol, terutama pada Outcome = 0.
    - Distribusi Age menunjukkan kelompok penderita diabetes cenderung berumur lebih tua.
 2. Scatter plot antar fitur
-   - Glucose vs. BMI:
-   - Glucose vs. Insulin:
-   - BMI vs. Age:
+   - Glucose vs. BMI: Penderita diabetes (Outcome = 1, warna oranye) cenderung memiliki nilai Glucose dan BMI yang lebih tinggi.
+   - Glucose vs. Insulin: Korelasi positif terlihat (semakin tinggi Glucose, cenderung Insulin juga meningkat).
+   - BMI vs. Age: Tidak terlihat pola yang kuat; namun, penderita diabetes lebih banyak berada di BMI tinggi dan usia tua.
+   - BMI vs. Glucose : Terlihat bahwa penderita diabetes (Outcome = 1, warna oranye) cenderung memiliki nilai Glucose dan BMI yang tinggi.
+   - Insulin vs. BMI : Distribusi agak menyebar, namun terlihat bahwa penderita diabetes dengan BMI tinggi juga cenderung memiliki nilai Insulin lebih tinggi.
+   - Insulin vs. Age : Tidak tampak korelasi yang jelas antara Insulin dan Age. Namun, beberapa penderita diabetes di usia tua (60+) tampak memiliki Insulin tinggi. 
 
    
 
 ### Correlation Matrix
 
 ![Correlation Matrix](images/Correlation_Matrix.png)
+
+|  |	Outcome| Interpretasi |
+|---|---|--- |
+|Outcome	|1.000000| |
+|Glucose	|0.535222| semakin tinggi Glucose, semakin besar kemungkinan diabetes.|
+|BMI	|0.317163| orang dengan BMI tinggi cenderung berisiko diabetes. |
+|Age	|0.237050| usia lanjut sedikit meningkatkan risiko. |
+|Pregnancies|0.223796| kehamilan berulang dapat berkaitan dengan gestational diabetes. |
+|SkinThickness	|0.171925| meskipun berhubungan dengan lemak tubuh, korelasi kecil. |
+|BloodPressure	|0.169353| ekanan darah tidak terlalu memengaruhi outcome secara langsung. | 
+|DiabetesPedigreeFunction	|0.160664| meski ini faktor genetik, korelasinya tidak terlalu besar. |
+|Insulin	|0.123646| korelasi rendah. |
+|Id	|0.006298| hanya nomor identitas. | 
+
+## Data Preparation
+### Data Spliting
+Setelah melakukan analisis terhadap data yang akan digunakan, selanjutnya adalah melakukan data preparation. Pertama kita akan melakukan splitting data train dan data test sebesar 80:20. 
+
+![Data Spliting](images/Data_Spliting.png)
+
+### SMOTE dan Standardisasi Fitur
+Karena terlihat persebaran data train 0 dan 1 terlihat tidak seimbang (imbalanced data) maka saya melakukan SMOTE untuk menyeimbangkan data train. Lalu, selanjutnya saya melakukan Standardisasi Fitur untuk digunakan pada beberapa model.
+
+![SMOTE dan Standardisasi Fitur](images/smote_Standardisasi_Fitur.png)
+
+
+## Modeling
+Ada 5 algoritma Machine Learning yang digunakan untuk membuat model, yaitu sebagai berikut.
+### Random Forest
+#### Apa itu?
+Random Forest adalah algoritma ensemble learning berbasis pohon keputusan. Ia bekerja dengan membuat banyak pohon keputusan saat pelatihan dan menggabungkan hasilnya (dengan voting untuk klasifikasi atau rata-rata untuk regresi).
+#### Cara Kerja
+- Data dilatih melalui banyak pohon keputusan (biasanya ratusan).
+- Setiap pohon dilatih pada subset acak dari data (bootstrap sampling).
+- Fitur juga dipilih secara acak saat setiap node dibagi (random subspace).
+- Hasil akhir diambil berdasarkan mayoritas (untuk klasifikasi) atau rata-rata (untuk regresi).
+### Decision Tree
+#### Apa itu?
+Decision Tree adalah struktur pohon di mana setiap node internal menguji fitur, setiap cabang mewakili hasil tes, dan setiap daun mewakili label.
+#### Cara Kerja
+- Data dibagi berdasarkan fitur yang paling mengurangi impurity (contoh: Gini Impurity, Entropy).
+- Proses ini berlanjut hingga semua data terklasifikasi atau mencapai kedalaman maksimum.
+- Overfitting adalah masalah umum jika tidak dipangkas.
+### AdaBoosting
+#### Apa itu?
+AdaBoost adalah metode boosting yang menggabungkan beberapa model lemah (biasanya decision stumps) menjadi satu model kuat.
+#### Cara Kerja
+- Melatih model lemah secara berurutan.
+- Setiap model baru fokus pada kesalahan dari model sebelumnya.
+- Memberikan bobot lebih pada kesalahan untuk model selanjutnya.
+- Hasil akhir adalah kombinasi tertimbang dari semua model.
+### SVM
+#### Apa itu?
+SVM adalah algoritma klasifikasi yang mencari hyperplane terbaik untuk memisahkan kelas data.
+#### Cara Kerja
+- Mencari hyperplane yang memaksimalkan margin antara kelas.
+- Menggunakan kernel trick untuk menangani data yang tidak dapat dipisahkan secara linear.
+- Cocok untuk dataset dengan dimensi tinggi.
+### KNN
+#### Apa itu?
+KNN adalah metode berbasis instance yang menyimpan seluruh dataset dan mengklasifikasikan berdasarkan tetangga terdekat.
+#### Cara Kerja
+- Hitung jarak (misalnya Euclidean) dari titik yang ingin diklasifikasikan ke semua titik dalam data pelatihan.
+- Pilih k tetangga terdekat.
+- Kelas mayoritas dari tetangga tersebut adalah prediksi.
+
+
+## Evaluasi
+### Confusion Matrix, Akurasi, dan F1-Score
+#### 1. Confusion Matrix
+#### 2. Akurasi
+#### 3. F1-Score
+### Penerapan Matriks Confusion, Akurasi, dan Skor f1
+#### 1. Random Forest
+#### 2. Catboosting
+#### 3. Decision Tree
+#### 4. AdaBoosting
+#### 5. SVM
+#### 6. KNN
 
 ## Referensi
 ---
