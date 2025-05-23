@@ -48,17 +48,22 @@ Dengan :
 
 ### Menangani duplicate value
 ![Cek Duplikasi](images/cek_dupikat.png)
+
 Dari hasil di atas, terlihat bahwa tidak ada data yang terduplikasi.
 ### Menangani Missing Value
 ![Cek Missing Value](images/cek_missing_value.png)
+
 dari output diatas diketahui bahwa tidak terdapat missing value pada dataset yang digunakan, tetapi harus dicek apakah terdapat nilai nol pada tiap kolom karena tidak mungkin nilai pada kolom Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction, Age. Karena bisa saja missing value nya diubah menjadi 0, hal ini dapat mempengaruhi peforma machine learning.
 ### Menangani Outlier
 ![Cek Nilai 0](images/cek_nilai_0.png)
+
 Setelah dicek ternyata terdapat banyak sekali yang bernilai 0, karena terdapat banyak sekali nilai 0 dan akan sangat berpengaruh ke peforma machine learning jika semuanya di drop. Maka, nilai 0 disini akan di ganti dengan nilai rata-rata pada setiap fitur. Terutama pada fitur Insulin, BMI, Glucose, dan SkinThickness yang tidak mungkin bernilai 0.
 ### Mengganti nilai 0 dengan nilai rata-rata
 ![Mengganti nilai 0](images/ganti_nilai_0.png)
 
+
 ### Mengecek Outlier
+
 ![Mengecek Outlier](images/Mengecek_Outlier.png)
 
 Hasilnya adalah :
@@ -80,16 +85,179 @@ Hasilnya adalah :
     Tidak terlihat adanya keanehan dari distribusi data di fitur Age.
 
 ## Deskripsi Statistik dari Data
-|Id|	Pregnancies|	Glucose	|BloodPressure|	SkinThickness|	Insulin|	BMI	|DiabetesPedigreeFunction|	Age|	Outcome|
-|---|---|---|---|---|---|---|---|---|---|
-|count	|2768.000000|	2768.000000|	2768.000000|	2768.000000|	2.768000e+03	2768.000000	2.768000e+03	2768.000000	2768.000000	2768.000000
-mean	1384.500000	3.742775	121.890118	72.256430	2.670450e+01	118.628647	3.255548e+01	0.471193	33.132225	0.343931
-std	799.197097	3.323801	30.501027	12.007473	1.318295e-12	89.681553	4.121892e-13	0.325669	11.777230	0.475104
-min	1.000000	0.000000	44.000000	24.000000	2.670450e+01	14.000000	3.255548e+01	0.078000	21.000000	0.000000
-25%	692.750000	1.000000	99.000000	64.000000	2.670450e+01	80.127890	3.255548e+01	0.244000	24.000000	0.000000
-50%	1384.500000	3.000000	118.000000	72.000000	2.670450e+01	80.127890	3.255548e+01	0.375000	29.000000	0.000000
-75%	2076.250000	6.000000	141.000000	80.000000	2.670450e+01	130.000000	3.255548e+01	0.624000	40.000000	1.000000
-max	2768.000000	17.000000	199.000000	122.000000	2.670450e+01	846.000000	3.255548e+01	2.420000	81.0
+|index|Id|Pregnancies|Glucose|BloodPressure|SkinThickness|Insulin|BMI|DiabetesPedigreeFunction|Age|Outcome|
+|---|---|---|---|---|---|---|---|---|---|---|
+|count|2768\.0|2768\.0|2768\.0|2768\.0|2768\.0|2768\.0|2768\.0|2768\.0|2768\.0|2768\.0|
+|mean|1384\.5|3\.7427745664739884|121\.8901180711016|72\.25643032259681|26\.843041030438705|80\.1278901734104|32\.590194462832876|0\.4711925578034682|33\.13222543352601|0\.3439306358381503|
+|std|799\.1970970918251|3\.3238009672683835|30\.501026868115638|12\.007473411734374|9\.812960210906155|112\.30193298150999|7\.103630403759228|0\.32566883299525706|11\.777229987737929|0\.475104095143688|
+|min|1\.0|0\.0|44\.0|24\.0|7\.0|0\.0|18\.2|0\.078|21\.0|0\.0|
+|25%|692\.75|1\.0|99\.0|64\.0|20\.82442196531792|0\.0|27\.575000000000003|0\.244|24\.0|0\.0|
+|50%|1384\.5|3\.0|118\.0|72\.0|23\.0|37\.0|32\.2|0\.375|29\.0|0\.0|
+|75%|2076\.25|6\.0|141\.0|80\.0|32\.0|130\.0|36\.625|0\.624|40\.0|1\.0|
+|max|2768\.0|17\.0|199\.0|122\.0|110\.0|846\.0|80\.6|2\.42|81\.0|1\.0|
+
+## Univariate Analysis
+
+Dari dataset yang digunakan diketahui bahwa hanya terdapat fitur bertipe data float dan int sehingga kita bisa memvisualisasikan datanya tanpa perlu memisahkan fitur-fitur yang memiliki tipedata yang berbeda
+
+### Pregnancies
+
+Top 10 dengan persentase paling banyak
+|Pregnancies|jumlah sampel|persentase|
+|---|---|---|
+|1|491|17\.7|
+|0|412|14\.9|
+|2|387|14\.0|
+|3|270|9\.8|
+|4|259|9\.4|
+|5|198|7\.2|
+|6|181|6\.5|
+|7|145|5\.2|
+|8|134|4\.8|
+|9|98|3\.5|
+
+![Pregnancies](images/Pregnancies.png)
+
+
+### Glucose
+
+Top 10 dengan persentase paling banyak
+|Glucose|jumlah sampel|persentase|
+|---|---|---|
+|99\.0|66|2\.4|
+|100\.0|61|2\.2|
+|102\.0|52|1\.9|
+|129\.0|51|1\.8|
+|106\.0|50|1\.8|
+|95\.0|49|1\.8|
+|112\.0|49|1\.8|
+|111\.0|47|1\.7|
+|105\.0|47|1\.7|
+|125\.0|46|1\.7|
+
+![Glucose](images/Glucose.png)
+
+
+### BloodPressure
+
+Top 10 dengan persentase paling banyak
+|BloodPressure|jumlah sampel|persentase|
+|---|---|---|
+|70\.0|201|7\.3|
+|74\.0|197|7\.1|
+|78\.0|173|6\.2|
+|68\.0|170|6\.1|
+|64\.0|163|5\.9|
+|72\.0|162|5\.9|
+|80\.0|138|5\.0|
+|76\.0|132|4\.8|
+|60\.0|129|4\.7|
+|62\.0|128|4\.6|
+
+![BloodPressure](images/BloodPressure.png)
+
+
+### SkinThickness
+
+Top 10 dengan persentase paling banyak
+|SkinThickness|jumlah sampel|persentase|
+|---|---|---|
+|20\.82442196531792|800|28\.9|
+|32\.0|114|4\.1|
+|30\.0|102|3\.7|
+|23\.0|82|3\.0|
+|27\.0|81|2\.9|
+|28\.0|74|2\.7|
+|18\.0|74|2\.7|
+|33\.0|71|2\.6|
+|39\.0|70|2\.5|
+|31\.0|69|2\.5|
+
+![SkinThickness](images/SkinThickness.png)
+
+
+### Insulin
+
+Top 10 dengan persentase paling banyak
+|Insulin|jumlah sampel|persentase|
+|---|---|---|
+|0|1330|48\.0|
+|105|42|1\.5|
+|140|33|1\.2|
+|130|31|1\.1|
+|180|30|1\.1|
+|120|29|1\.0|
+|100|27|1\.0|
+|94|24|0\.9|
+|135|23|0\.8|
+|76|22|0\.8|
+
+![Insulin](images/Insulin.png)
+
+
+### BMI
+
+Top 10 dengan persentase paling banyak
+|BMI|jumlah sampel|persentase|
+|---|---|---|
+|32\.0|46|1\.7|
+|31\.2|45|1\.6|
+|31\.6|41|1\.5|
+|32\.13739161849711|39|1\.4|
+|33\.3|37|1\.3|
+|32\.4|35|1\.3|
+|32\.8|34|1\.2|
+|30\.8|33|1\.2|
+|32\.9|33|1\.2|
+|30\.1|31|1\.1|
+
+![BMI](images/BMI.png)
+
+
+### DiabetesPedigreeFunction
+
+Top 10 dengan persentase paling banyak
+|DiabetesPedigreeFunction|jumlah sampel|persentase|
+|---|---|---|
+|0\.258|22|0\.8|
+|0\.207|20|0\.7|
+|0\.268|18|0\.7|
+|0\.238|18|0\.7|
+|0\.261|18|0\.7|
+|0\.259|17|0\.6|
+|0\.284|16|0\.6|
+|0\.52|16|0\.6|
+|0\.292|16|0\.6|
+|0\.551|16|0\.6|
+
+![DiabetesPedigreeFunction](images/DiabetesPedigreeFunction.png)
+
+
+### Age
+
+Top 10 dengan persentase paling banyak
+|Age|jumlah sampel|persentase|
+|---|---|---|
+|22|264|9\.5|
+|21|229|8\.3|
+|25|182|6\.6|
+|24|168|6\.1|
+|23|141|5\.1|
+|28|133|4\.8|
+|26|117|4\.2|
+|27|113|4\.1|
+|29|99|3\.6|
+|31|82|3\.0|
+
+![Age](images/Age.png)
+
+
+## Multivariate Analysis
+### Umur vs Kondisi Diabetes
+### BMI vs Kondisi Diabetes
+
+
+
 ## Referensi
 ---
 1. Afriani, T., & Pudiyanti, P. (2020). Peran Teknologi Informasi dalam Perawatan Diabetes Mellitus. Nursing Current: Jurnal Keperawatan. https://doi.org/10.19166/NC.V8I1.2722
