@@ -409,18 +409,22 @@ KNN adalah metode berbasis instance yang menyimpan seluruh dataset dan mengklasi
   - FP (False Positive): Prediksi salah, prediksi positif tapi sebenarnya negatif.
   - FN (False Negative): Prediksi salah, prediksi negatif tapi sebenarnya positif
 - Contoh Tampilan
+- 
 ![Contoh Tampilan](images/CM_Random_Forest.png)
 
 #### 2. Akurasi
 Akurasi Mengukur proporsi total prediksi yang benar. Tidak cocok jika data tidak seimbang.
+
 ![Akurasi](images/Akurasi.png)
 
 #### 3. F1-Score
 F1-Score adalah Harmonik rata-rata dari presisi dan recall. Cocok untuk data tidak seimbang.
+
 ![F1-Score](images/F1-Score.png)
 
 #### 4. Recall
 Recall (juga dikenal sebagai Sensitivity atau True Positive Rate) adalah metrik evaluasi yang menunjukkan seberapa baik model mendeteksi semua instance positif dalam data.
+
 ![Recall](images/Recall.png)
 
 
@@ -431,6 +435,7 @@ keterangan :
 
 ### Penerapan Matriks Confusion
 #### 1. Random Forest
+
 ![Confusion Matrix Random Forest](images/CM_Random_Forest.png)
 
 Berdasarkan confusion matrix diatas:
@@ -440,6 +445,7 @@ Berdasarkan confusion matrix diatas:
 - 9 responden diklasifikasikan salah sebagai TIDAK DIABETES, padahal sebenarnya DIABETES (False Negative).
 
 #### 2. Decision Tree
+
 ![Confusion Matrix Decision Tree](images/CM_Decision_Tree.png)
 
 Berdasarkan confusion matrix diatas:
@@ -450,6 +456,7 @@ Berdasarkan confusion matrix diatas:
 
 
 #### 3. AdaBoosting
+
 ![Confusion Matrix AdaBoosting](images/CM_AdaBoosting.png)
 
 Berdasarkan confusion matrix diatas:
@@ -458,6 +465,7 @@ Berdasarkan confusion matrix diatas:
 - 2 responden diklasifikasikan salah sebagai DIABETES, padahal sebenarnya TIDAK DIABETES (False Positive).
 - 7 responden diklasifikasikan salah sebagai TIDAK DIABETES, padahal sebenarnya DIABETES (False Negative).
 #### 4. SVM
+
 ![Confusion Matrix SVM](images/CM_SVM.png)
 
 Berdasarkan confusion matrix diatas:
@@ -466,6 +474,7 @@ Berdasarkan confusion matrix diatas:
 - 56 responden diklasifikasikan salah sebagai DIABETES, padahal sebenarnya TIDAK DIABETES (False Positive).
 - 36 responden diklasifikasikan salah sebagai TIDAK DIABETES, padahal sebenarnya DIABETES (False Negative).
 #### 5. KNN
+
 ![Confusion Matrix KNN](images/CM_KNN.png)
 
 Berdasarkan confusion matrix diatas:
@@ -483,6 +492,14 @@ Berdasarkan confusion matrix diatas:
 |2    |AdaBoosting  |0.983755  |0.975610  |0.962567|
 |3    |        SVM  |0.833935  |0.766497  |0.807487|
 |4    |        KNN  |0.870036  |0.824390  |0.903743|
+
+## Kesimpulan
+
+![Kesimpulan Fitur yang mempengaruhi](images/Kesimpulan_fitur.png)
+
+1. Berdasarkan data yang diperolah, menunjukan Fitur utama yang memengaruhi kemungkinan diabetes adalah `Glucose`, `BMI`, `Age`, dan `Pregnancies`. ke-4 faktor ini sangat berpengaruh pada perhitungan prediksi diabetes.
+2. Setelah menguji data menggunakan 5 model machine learning, Model AdaBoosting memberikan performa terbaik dan dapat diandalkan untuk klasifikasi kasus diabetes dibandingkan model lainnya berdasarkan skor akurasi, skor F1, dan jumlah kesalahan klasifikasi yang paling sedikit.
+3. Model ini dapat digunakan untuk membantu pengambilan keputusan medis awal, terutama pada tahap skrining atau pencegahan.
 
 ## Referensi
 ---
