@@ -399,6 +399,9 @@ KNN adalah metode berbasis instance yang menyimpan seluruh dataset dan mengklasi
 - `n_neighbors=5`: Jumlah tetangga yang digunakan untuk voting.
 - Data harus diskalakan agar perhitungan jarak adil.
 
+### Model yang dipilih
+Setelah semua model dijalankan dan menguji data menggunakan 5 model machine learning, Model AdaBoosting memberikan performa terbaik dan dapat diandalkan untuk klasifikasi kasus diabetes dibandingkan model lainnya berdasarkan skor akurasi, skor F1, dan jumlah kesalahan klasifikasi yang paling sedikit. 
+
 
 ## Evaluasi
 ### Confusion Matrix, Akurasi, dan F1-Score
