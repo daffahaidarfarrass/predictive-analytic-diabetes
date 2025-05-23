@@ -47,11 +47,12 @@ Dengan :
 | 2768 | 10 |
 
 ### Menangani duplicate value
-![Cek Duplikasi](images/cek_dupikat.png)
+![Cek Duplikasi](https://github.com/daffahaidarfarrass/predictive-analytic-diabetes/blob/main/images/cek_dupikat.png)
+
 
 Dari hasil di atas, terlihat bahwa tidak ada data yang terduplikasi.
 ### Menangani Missing Value
-![Cek Missing Value](images/cek_missing_value.png)
+![Cek Missing Value](https://github.com/daffahaidarfarrass/predictive-analytic-diabetes/blob/main/images/cek_missing_value.png)
 
 dari output diatas diketahui bahwa tidak terdapat missing value pada dataset yang digunakan, tetapi harus dicek apakah terdapat nilai nol pada tiap kolom karena tidak mungkin nilai pada kolom Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction, Age. Karena bisa saja missing value nya diubah menjadi 0, hal ini dapat mempengaruhi peforma machine learning.
 ### Menangani Outlier
