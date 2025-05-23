@@ -333,6 +333,14 @@ Random Forest adalah algoritma ensemble learning berbasis pohon keputusan. Ia be
 - Setiap pohon dilatih pada subset acak dari data (bootstrap sampling).
 - Fitur juga dipilih secara acak saat setiap node dibagi (random subspace).
 - Hasil akhir diambil berdasarkan mayoritas (untuk klasifikasi) atau rata-rata (untuk regresi).
+#### Tahapan
+- Membuat 100 decision trees.
+- Melatih model pada data hasil oversampling yang menggunakan SMOTE (`X_resampled`, `y_resampled`).
+- Voting dilakukan di antara semua pohon untuk klasifikasi akhir.
+#### Parameter yang digunakan
+- `n_estimators=100`: Jumlah pohon yang digunakan dalam ensemble.
+- `random_state=42`: Menjamin reproducibility.
+- parameter default: `max_depth=None`, `bootstrap=True`
 ### Decision Tree
 #### Apa itu?
 Decision Tree adalah struktur pohon di mana setiap node internal menguji fitur, setiap cabang mewakili hasil tes, dan setiap daun mewakili label.
@@ -340,6 +348,13 @@ Decision Tree adalah struktur pohon di mana setiap node internal menguji fitur, 
 - Data dibagi berdasarkan fitur yang paling mengurangi impurity (contoh: Gini Impurity, Entropy).
 - Proses ini berlanjut hingga semua data terklasifikasi atau mencapai kedalaman maksimum.
 - Overfitting adalah masalah umum jika tidak dipangkas.
+#### Tahapan
+- Membuat satu decision tree penuh.
+- Melatih model pada data oversampled.
+#### Parameter yang digunakan
+- Menggunakan parameter default
+- `criterion='gini'`: Fungsi untuk mengukur kualitas split.
+- `max_depth=None`: Pohon tumbuh sampai semua daun murni.
 ### AdaBoosting
 #### Apa itu?
 AdaBoost adalah metode boosting yang menggabungkan beberapa model lemah (biasanya decision stumps) menjadi satu model kuat.
@@ -348,6 +363,14 @@ AdaBoost adalah metode boosting yang menggabungkan beberapa model lemah (biasany
 - Setiap model baru fokus pada kesalahan dari model sebelumnya.
 - Memberikan bobot lebih pada kesalahan untuk model selanjutnya.
 - Hasil akhir adalah kombinasi tertimbang dari semua model.
+#### Tahapan
+- Membuat boosting dari 50 weak learners (decision stumps).
+- Decision tree dasar dipakai untuk iterasi boosting.
+- Latihan pada data asli yang belum di-resample.
+#### Parameter yang digunakan
+- `estimator=dt_model`: Base learner (bisa decision stump).
+- `n_estimators=50`: Jumlah iterasi boosting.
+- `random_state=42`: Konsistensi hasil eksperimen.
 ### SVM
 #### Apa itu?
 SVM adalah algoritma klasifikasi yang mencari hyperplane terbaik untuk memisahkan kelas data.
@@ -355,6 +378,13 @@ SVM adalah algoritma klasifikasi yang mencari hyperplane terbaik untuk memisahka
 - Mencari hyperplane yang memaksimalkan margin antara kelas.
 - Menggunakan kernel trick untuk menangani data yang tidak dapat dipisahkan secara linear.
 - Cocok untuk dataset dengan dimensi tinggi.
+#### Tahapan
+- Membangun hyperplane optimal dalam ruang berdimensi tinggi.
+- Data distandarkan (`X_train_scaled`) agar kernel bekerja optimal.
+#### Parameter yang digunakan
+- `kernel='rbf'`: Menggunakan Radial Basis Function kernel.
+- `C=1`: Parameter regularisasi, kontrol margin vs. kesalahan.
+- `gamma='scale'`: Otomatis menghitung gamma berdasarkan variansi fitur.
 ### KNN
 #### Apa itu?
 KNN adalah metode berbasis instance yang menyimpan seluruh dataset dan mengklasifikasikan berdasarkan tetangga terdekat.
@@ -362,20 +392,97 @@ KNN adalah metode berbasis instance yang menyimpan seluruh dataset dan mengklasi
 - Hitung jarak (misalnya Euclidean) dari titik yang ingin diklasifikasikan ke semua titik dalam data pelatihan.
 - Pilih k tetangga terdekat.
 - Kelas mayoritas dari tetangga tersebut adalah prediksi.
+#### Tahapan
+- Mencari 5 tetangga terdekat untuk setiap instance uji.
+- Menentukan label berdasarkan mayoritas dari 5 tetangga.
+#### Parameter yang digunakan
+- `n_neighbors=5`: Jumlah tetangga yang digunakan untuk voting.
+- Data harus diskalakan agar perhitungan jarak adil.
 
 
 ## Evaluasi
 ### Confusion Matrix, Akurasi, dan F1-Score
 #### 1. Confusion Matrix
+- Menampilkan jumlah:
+  - TP (True Positive): Prediksi benar terhadap kelas positif.
+  - TN (True Negative): Prediksi benar terhadap kelas negatif.
+  - FP (False Positive): Prediksi salah, prediksi positif tapi sebenarnya negatif.
+  - FN (False Negative): Prediksi salah, prediksi negatif tapi sebenarnya positif
+- Contoh Tampilan
+![Contoh Tampilan](images/CM_Random_Forest.png)
+
 #### 2. Akurasi
+Akurasi Mengukur proporsi total prediksi yang benar. Tidak cocok jika data tidak seimbang.
+![Akurasi](images/Akurasi.png)
+
 #### 3. F1-Score
-### Penerapan Matriks Confusion, Akurasi, dan Skor f1
+F1-Score adalah Harmonik rata-rata dari presisi dan recall. Cocok untuk data tidak seimbang.
+![F1-Score](images/F1-Score.png)
+
+#### 4. Recall
+Recall (juga dikenal sebagai Sensitivity atau True Positive Rate) adalah metrik evaluasi yang menunjukkan seberapa baik model mendeteksi semua instance positif dalam data.
+![Recall](images/Recall.png)
+
+
+keterangan :
+- TP (True Positives): Jumlah data positif yang diprediksi benar.
+- FN (False Negatives): Jumlah data positif yang diprediksi salah sebagai negatif.
+
+
+### Penerapan Matriks Confusion
 #### 1. Random Forest
-#### 2. Catboosting
-#### 3. Decision Tree
-#### 4. AdaBoosting
-#### 5. SVM
-#### 6. KNN
+![Confusion Matrix Random Forest](images/CM_Random_Forest.png)
+
+Berdasarkan confusion matrix diatas:
+- 360 responden diklasifikasikan benar sebagai TIDAK DIABETES (True Negative).
+- 178 responden diklasifikasikan benar sebagai DIABETES (True Positive).
+- 7 responden diklasifikasikan salah sebagai DIABETES, padahal sebenarnya TIDAK DIABETES (False Positive).
+- 9 responden diklasifikasikan salah sebagai TIDAK DIABETES, padahal sebenarnya DIABETES (False Negative).
+
+#### 2. Decision Tree
+![Confusion Matrix Decision Tree](images/CM_Decision_Tree.png)
+
+Berdasarkan confusion matrix diatas:
+- 320 responden diklasifikasikan benar sebagai TIDAK DIABETES (True Negative).
+- 63 responden diklasifikasikan benar sebagai DIABETES (True Positive).
+- 47 responden diklasifikasikan salah sebagai DIABETES, padahal sebenarnya TIDAK DIABETES (False Positive).
+- 124 responden diklasifikasikan salah sebagai TIDAK DIABETES, padahal sebenarnya DIABETES (False Negative).
+
+
+#### 3. AdaBoosting
+![Confusion Matrix AdaBoosting](images/CM_AdaBoosting.png)
+
+Berdasarkan confusion matrix diatas:
+- 365 responden diklasifikasikan benar sebagai TIDAK DIABETES (True Negative).
+- 180 responden diklasifikasikan benar sebagai DIABETES (True Positive).
+- 2 responden diklasifikasikan salah sebagai DIABETES, padahal sebenarnya TIDAK DIABETES (False Positive).
+- 7 responden diklasifikasikan salah sebagai TIDAK DIABETES, padahal sebenarnya DIABETES (False Negative).
+#### 4. SVM
+![Confusion Matrix SVM](images/CM_SVM.png)
+
+Berdasarkan confusion matrix diatas:
+- 311 responden diklasifikasikan benar sebagai TIDAK DIABETES (True Negative).
+- 151 responden diklasifikasikan benar sebagai DIABETES (True Positive).
+- 56 responden diklasifikasikan salah sebagai DIABETES, padahal sebenarnya TIDAK DIABETES (False Positive).
+- 36 responden diklasifikasikan salah sebagai TIDAK DIABETES, padahal sebenarnya DIABETES (False Negative).
+#### 5. KNN
+![Confusion Matrix KNN](images/CM_KNN.png)
+
+Berdasarkan confusion matrix diatas:
+- 313 responden diklasifikasikan benar sebagai TIDAK DIABETES (True Negative).
+- 169 responden diklasifikasikan benar sebagai DIABETES (True Positive).
+- 54 responden diklasifikasikan salah sebagai DIABETES, padahal sebenarnya TIDAK DIABETES (False Positive).
+- 18 responden diklasifikasikan salah sebagai TIDAK DIABETES, padahal sebenarnya DIABETES (False Negative).
+
+#### Penerapan Accuracy, F1-Score, Recall
+
+| |          Model|  Accuracy  |F1-Score    |Recall|
+|---|---|---|---|---|
+|0  |Random Forest  |0.981949  |0.972973  |0.962567|
+|1  |Decision Tree  |0.691336  |0.424242  |0.336898|
+|2    |AdaBoosting  |0.983755  |0.975610  |0.962567|
+|3    |        SVM  |0.833935  |0.766497  |0.807487|
+|4    |        KNN  |0.870036  |0.824390  |0.903743|
 
 ## Referensi
 ---
