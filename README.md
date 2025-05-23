@@ -57,9 +57,13 @@ dari output diatas diketahui bahwa tidak terdapat missing value pada dataset yan
 ### Menangani Outlier
 ![Cek Nilai 0](images/cek_nilai_0.png)
 
-Setelah dicek ternyata terdapat banyak sekali yang bernilai 0, karena terdapat banyak sekali nilai 0 dan akan sangat berpengaruh ke peforma machine learning jika semuanya di drop. Maka, nilai 0 disini akan di ganti dengan nilai rata-rata pada setiap fitur. Terutama pada fitur Insulin, BMI, Glucose, dan SkinThickness yang tidak mungkin bernilai 0.
+Setelah dicek ternyata terdapat banyak sekali yang bernilai 0, karena terdapat banyak sekali nilai 0 dan akan sangat berpengaruh ke peforma machine learning jika semuanya di drop. Maka, nilai 0 disini akan di ganti dengan nilai rata-rata pada setiap fitur. Terutama pada fitur SkinThickness, BMI, Glucose, dan BloodPressure yang tidak mungkin bernilai 0.
 ### Mengganti nilai 0 dengan nilai rata-rata
 ![Mengganti nilai 0](images/ganti_nilai_0.png)
+
+lalu selanjutnya adalah menangangi kesalah nilai yang dimana itu adalah hal yang tidak mungkin di dunia medis
+
+![Mengganti nilai yang tidak masuk akal](images/nilai_tidak_masuk_akal.png)
 
 
 ### Mengecek Outlier
@@ -254,9 +258,42 @@ Top 10 dengan persentase paling banyak
 
 ## Multivariate Analysis
 ### Umur vs Kondisi Diabetes
+
+![Umur vs Kondisi Diabetes](images/Umur_Diabetes.png)
+
+Orang yang menderita diabetes cenderung berusia lebih tua, namun faktor usia bukan satu-satunya penentu karena ada banyak variasi usia di kedua kelompok. Analisis ini menunjukkan pentingnya mempertimbangkan usia sebagai salah satu variabel penting dalam deteksi risiko diabetes, meskipun tidak cukup berdiri sendiri. Terlihat banyak outlier usia tinggi pada kelompok yang tidak menderita (usia di atas 60 tahun). Bisa menunjukkan bahwa tidak semua lansia menderita diabetes, ada faktor lain yang mungkin melindungi (gaya hidup, genetik, dll).
+
 ### BMI vs Kondisi Diabetes
 
+![BMI vs Kondisi Diabetes](images/BMI_Diabetes.png)
 
+Terdapat kecenderungan bahwa individu yang menderita diabetes memiliki BMI yang lebih tinggi dibanding yang tidak menderita.
+
+
+### Glukosa vs Kondisi Diabetes
+
+![Glukosa vs Kondisi Diabetes](images/Glucose_Diabetes.png)
+
+Nilai glukosa yang tinggi sangat berkorelasi dengan kondisi diabetes. Distribusinya menunjukkan bahwa penderita diabetes cenderung memiliki glukosa darah yang lebih tinggi secara signifikan.
+
+### Pairplot berdasarkan Outcome
+
+![Pairplot berdasarkan Outcome](images/Pairplot_berdasarkan_Outcome.png)
+
+1. Diagonal (Garis diagonal: Distribusi masing-masing fitur)
+   - Distribusi Glucose dan BMI terlihat lebih tinggi pada kelompok yang menderita diabetes (warna oranye).
+   - Distribusi Insulin sangat menyebar dan memiliki banyak nilai nol, terutama pada Outcome = 0.
+   - Distribusi Age menunjukkan kelompok penderita diabetes cenderung berumur lebih tua.
+2. Scatter plot antar fitur
+   - Glucose vs. BMI:
+   - Glucose vs. Insulin:
+   - BMI vs. Age:
+
+   
+
+### Correlation Matrix
+
+![Correlation Matrix](images/Correlation_Matrix.png)
 
 ## Referensi
 ---
