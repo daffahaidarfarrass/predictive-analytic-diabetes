@@ -46,47 +46,16 @@ Dengan :
 | --- | --- |
 | 2768 | 10 |
 
-### Menangani duplicate value
-![Cek Duplikasi](https://github.com/daffahaidarfarrass/predictive-analytic-diabetes/blob/main/images/cek_dupikat.png)
+### Memeriksa duplicate value
+![cek_dupikat](https://github.com/user-attachments/assets/fb86118c-112e-4b66-9219-c34b19ed7573)
+
 
 Dari hasil di atas, terlihat bahwa tidak ada data yang terduplikasi.
-### Menangani Missing Value
-![Cek Missing Value](https://github.com/daffahaidarfarrass/predictive-analytic-diabetes/blob/main/images/cek_missing_value.png)
+### Memeriksa Missing Value
+![cek_missing_value](https://github.com/user-attachments/assets/2f08fc41-830b-441a-b279-44f1bad8fe1f)
+
 
 dari output diatas diketahui bahwa tidak terdapat missing value pada dataset yang digunakan, tetapi harus dicek apakah terdapat nilai nol pada tiap kolom karena tidak mungkin nilai pada kolom Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction, Age. Karena bisa saja missing value nya diubah menjadi 0, hal ini dapat mempengaruhi peforma machine learning.
-### Menangani Outlier
-![Cek Nilai 0](https://github.com/daffahaidarfarrass/predictive-analytic-diabetes/blob/main/images/cek_nilai_0.png)
-
-Setelah dicek ternyata terdapat banyak sekali yang bernilai 0, karena terdapat banyak sekali nilai 0 dan akan sangat berpengaruh ke peforma machine learning jika semuanya di drop. Maka, nilai 0 disini akan di ganti dengan nilai rata-rata pada setiap fitur. Terutama pada fitur SkinThickness, BMI, Glucose, dan BloodPressure yang tidak mungkin bernilai 0.
-### Mengganti nilai 0 dengan nilai rata-rata
-![Mengganti nilai 0](https://github.com/daffahaidarfarrass/predictive-analytic-diabetes/blob/main/images/ganti_nilai_0.png)
-
-lalu selanjutnya adalah menangangi kesalah nilai yang dimana itu adalah hal yang tidak mungkin di dunia medis
-
-![Mengganti nilai yang tidak masuk akal](https://github.com/daffahaidarfarrass/predictive-analytic-diabetes/blob/main/images/nilai_tidak_masuk_akal.png)
-
-
-### Mengecek Outlier
-
-![Mengecek Outlier](https://github.com/daffahaidarfarrass/predictive-analytic-diabetes/blob/main/images/Mengecek_Outlier.png)
-
-Hasilnya adalah :
-1. Pregnancies
-   Dapat dilihat mayoritas berada di angka 1-6. Terdapat outlier yaitu diatas 13. Tetapi, outlier ini tidak akan dihapus karena dalam beberapa kasus bisa saja wanita melahirkan lebih dari 13 kali.
-2. Glucose
-   Pada grafik Glucose terlihat normal tidak adanya outlier
-3. BloodPressure
-   Terdapat nilai nol, yang tidak masuk akal sebagai tekanan darah, kemungkinan data tidak valid atau hilang. Maka outlier ini akan diisi dengan nila rata-rata dari fiturnya.
-4. SkinThickness
-   Ada nilai nol dan outlier besar di atas 100 mm, yang jarang terjadi dalam praktik medis. Karena rentang rata-rata dalam dunia medis adalah 0-80 mm. oleh karena itu outlier ini akan diisi dengan nila rata-rata dari fiturnya.
-5. Insulin
-    Banyak nilai outlier sangat tinggi (hingga lebih dari 800). 
-6. BMI
-    Ada outlier di atas 50, bahkan mendekati 80. Karena BMI > 70  saja biasanya sudah dianggap sangat tinggi. Maka outlier ini akan diisi dengan nila rata-rata dari fiturnya.
-7. DiabetesPedigreeFunction
-    Terdapat Outlier di atas 2 menunjukkan risiko genetik tinggi. Maka outlier ini akan diisi dengan nila rata-rata dari fiturnya.
-8. Age
-    Tidak terlihat adanya keanehan dari distribusi data di fitur Age.
 
 ## Deskripsi Statistik dari Data
 |index|Id|Pregnancies|Glucose|BloodPressure|SkinThickness|Insulin|BMI|DiabetesPedigreeFunction|Age|Outcome|
@@ -120,7 +89,12 @@ Top 10 dengan persentase paling banyak
 |8|134|4\.8|
 |9|98|3\.5|
 
-![Pregnancies](https://github.com/daffahaidarfarrass/predictive-analytic-diabetes/blob/main/images/Pregnancies.png)
+![Pregnancies](https://github.com/user-attachments/assets/48034493-fd29-4eb7-8ad9-631f2e50828d)
+
+Insight :
+- Ada 491 individu yang memiliki 1 kehamilan, dan 412 individu yang tidak pernah mengalami kehamilan (0 kehamilan)
+- 1 kehamilan merupakan 17.7% dari total dataset, sedangkan 0 kehamilan adalah 14.9% dari total.
+- Distribusi Menurun
 
 
 ### Glucose
@@ -139,7 +113,12 @@ Top 10 dengan persentase paling banyak
 |105\.0|47|1\.7|
 |125\.0|46|1\.7|
 
-![Glucose](https://github.com/daffahaidarfarrass/predictive-analytic-diabetes/blob/main/images/Glucose.png)
+![Glucose](https://github.com/user-attachments/assets/43e72654-be2f-4ee7-9ca6-da58bbcc135e)
+
+Insight :
+- Terdapat 66 individu dengan kadar glukosa 99.0.
+- Nilai glukosa yang paling sering ditemukan memiliki frekuensi lebih tinggi, seperti 99.0 (2.4%), 100.0 (2.2%), dan 102.0 (1.9%)
+- Distribusi Menyebar
 
 
 ### BloodPressure
@@ -158,8 +137,12 @@ Top 10 dengan persentase paling banyak
 |60\.0|129|4\.7|
 |62\.0|128|4\.6|
 
-![BloodPressure](https://github.com/daffahaidarfarrass/predictive-analytic-diabetes/blob/main/images/BloodPressure.png)
+![BloodPressure](https://github.com/user-attachments/assets/83fd6ee3-8233-4a2b-8018-1ebe9714fce3)
 
+Insight:
+- Terdapat 201 individu dengan tekanan darah diastolik sebesar 70.0 mmHg.
+- Nilai tekanan darah 70.0 mmHg ditemukan pada 7.3% dari total populasi dalam dataset.
+- Distribusi Menurun
 
 ### SkinThickness
 
@@ -177,7 +160,7 @@ Top 10 dengan persentase paling banyak
 |39\.0|70|2\.5|
 |31\.0|69|2\.5|
 
-![SkinThickness](https://github.com/daffahaidarfarrass/predictive-analytic-diabetes/blob/main/images/SkinThickness.png)
+
 
 
 ### Insulin
@@ -196,7 +179,7 @@ Top 10 dengan persentase paling banyak
 |135|23|0\.8|
 |76|22|0\.8|
 
-![Insulin](https://github.com/daffahaidarfarrass/predictive-analytic-diabetes/blob/main/images/Insulin.png)
+
 
 
 ### BMI
@@ -215,7 +198,7 @@ Top 10 dengan persentase paling banyak
 |32\.9|33|1\.2|
 |30\.1|31|1\.1|
 
-![BMI](https://github.com/daffahaidarfarrass/predictive-analytic-diabetes/blob/main/images/BMI.png)
+
 
 
 ### DiabetesPedigreeFunction
@@ -234,7 +217,7 @@ Top 10 dengan persentase paling banyak
 |0\.292|16|0\.6|
 |0\.551|16|0\.6|
 
-![DiabetesPedigreeFunction](https://github.com/daffahaidarfarrass/predictive-analytic-diabetes/blob/main/images/DiabetesPedigreeFunction.png)
+
 
 
 ### Age
@@ -253,7 +236,7 @@ Top 10 dengan persentase paling banyak
 |29|99|3\.6|
 |31|82|3\.0|
 
-![Age](https://github.com/daffahaidarfarrass/predictive-analytic-diabetes/blob/main/images/Age.png)
+
 
 
 ## Multivariate Analysis
@@ -312,6 +295,42 @@ Nilai glukosa yang tinggi sangat berkorelasi dengan kondisi diabetes. Distribusi
 |Id	|0.006298| hanya nomor identitas. | 
 
 ## Data Preparation
+### Mengecek Outlier
+
+![Mengecek Outlier](https://github.com/daffahaidarfarrass/predictive-analytic-diabetes/blob/main/images/Mengecek_Outlier.png)
+
+Hasilnya adalah :
+1. Pregnancies
+   Dapat dilihat mayoritas berada di angka 1-6. Terdapat outlier yaitu diatas 13. Tetapi, outlier ini tidak akan dihapus karena dalam beberapa kasus bisa saja wanita melahirkan lebih dari 13 kali.
+2. Glucose
+   Pada grafik Glucose terlihat normal tidak adanya outlier
+3. BloodPressure
+   Terdapat nilai nol, yang tidak masuk akal sebagai tekanan darah, kemungkinan data tidak valid atau hilang. Maka outlier ini akan diisi dengan nila rata-rata dari fiturnya.
+4. SkinThickness
+   Ada nilai nol dan outlier besar di atas 100 mm, yang jarang terjadi dalam praktik medis. Karena rentang rata-rata dalam dunia medis adalah 0-80 mm. oleh karena itu outlier ini akan diisi dengan nila rata-rata dari fiturnya.
+5. Insulin
+    Banyak nilai outlier sangat tinggi (hingga lebih dari 800). 
+6. BMI
+    Ada outlier di atas 50, bahkan mendekati 80. Karena BMI > 70  saja biasanya sudah dianggap sangat tinggi. Maka outlier ini akan diisi dengan nila rata-rata dari fiturnya.
+7. DiabetesPedigreeFunction
+    Terdapat Outlier di atas 2 menunjukkan risiko genetik tinggi. Maka outlier ini akan diisi dengan nila rata-rata dari fiturnya.
+8. Age
+    Tidak terlihat adanya keanehan dari distribusi data di fitur Age.
+   
+### Menangani Outlier
+![Cek Nilai 0](https://github.com/daffahaidarfarrass/predictive-analytic-diabetes/blob/main/images/cek_nilai_0.png)
+
+Setelah dicek ternyata terdapat banyak sekali yang bernilai 0, karena terdapat banyak sekali nilai 0 dan akan sangat berpengaruh ke peforma machine learning jika semuanya di drop. Maka, nilai 0 disini akan di ganti dengan nilai rata-rata pada setiap fitur. Terutama pada fitur SkinThickness, BMI, Glucose, dan BloodPressure yang tidak mungkin bernilai 0.
+
+### Mengganti nilai 0 dengan nilai rata-rata
+![Mengganti nilai 0](https://github.com/daffahaidarfarrass/predictive-analytic-diabetes/blob/main/images/ganti_nilai_0.png)
+
+lalu selanjutnya adalah menangangi kesalah nilai yang dimana itu adalah hal yang tidak mungkin di dunia medis
+
+![Mengganti nilai yang tidak masuk akal](https://github.com/daffahaidarfarrass/predictive-analytic-diabetes/blob/main/images/nilai_tidak_masuk_akal.png)
+
+
+
 ### Data Spliting
 Setelah melakukan analisis terhadap data yang akan digunakan, selanjutnya adalah melakukan data preparation. Pertama kita akan melakukan splitting data train dan data test sebesar 80:20. 
 
