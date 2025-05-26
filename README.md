@@ -269,6 +269,7 @@ Orang yang menderita diabetes cenderung berusia lebih tua, namun faktor usia buk
 
 ### BMI vs Kondisi Diabetes
 
+![BMI_Diabetes](https://github.com/user-attachments/assets/22f6f4d7-fff6-4e49-ae58-47c2cb511efc)
 
 
 Terdapat kecenderungan bahwa individu yang menderita diabetes memiliki BMI yang lebih tinggi dibanding yang tidak menderita.
