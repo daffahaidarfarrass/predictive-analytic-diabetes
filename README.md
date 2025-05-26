@@ -277,13 +277,15 @@ Terdapat kecenderungan bahwa individu yang menderita diabetes memiliki BMI yang 
 
 ### Glukosa vs Kondisi Diabetes
 
+![Glucose_Diabetes](https://github.com/user-attachments/assets/acea5fa7-77d5-4af2-bee0-a8ffab463d19)
 
 
 Nilai glukosa yang tinggi sangat berkorelasi dengan kondisi diabetes. Distribusinya menunjukkan bahwa penderita diabetes cenderung memiliki glukosa darah yang lebih tinggi secara signifikan.
 
 ### Pairplot berdasarkan Outcome
 
-![Pairplot berdasarkan Outcome](https://github.com/daffahaidarfarrass/predictive-analytic-diabetes/blob/main/images/Pairplot_berdasarkan_Outcome.png)
+![Pairplot_berdasarkan_Outcome](https://github.com/user-attachments/assets/ce4c297d-fce0-4e09-bd7f-a4ab439b2a95)
+
 
 1. Diagonal (Garis diagonal: Distribusi masing-masing fitur)
    - Distribusi Glucose dan BMI terlihat lebih tinggi pada kelompok yang menderita diabetes (warna oranye).
@@ -301,7 +303,8 @@ Nilai glukosa yang tinggi sangat berkorelasi dengan kondisi diabetes. Distribusi
 
 ### Correlation Matrix
 
-![Correlation Matrix](https://github.com/daffahaidarfarrass/predictive-analytic-diabetes/blob/main/images/Correlation_Matrix.png)
+![Correlation_Matrix](https://github.com/user-attachments/assets/e1756340-0178-4197-9667-cc2552101c54)
+
 
 |  |	Outcome| Interpretasi |
 |---|---|--- |
@@ -319,7 +322,8 @@ Nilai glukosa yang tinggi sangat berkorelasi dengan kondisi diabetes. Distribusi
 ## Data Preparation
 ### Mengecek Outlier
 
-![Mengecek Outlier](https://github.com/daffahaidarfarrass/predictive-analytic-diabetes/blob/main/images/Mengecek_Outlier.png)
+![Mengecek_Outlier](https://github.com/user-attachments/assets/0ad1613d-4655-4381-821a-69db5e7813c4)
+
 
 Hasilnya adalah :
 1. Pregnancies
@@ -340,28 +344,45 @@ Hasilnya adalah :
     Tidak terlihat adanya keanehan dari distribusi data di fitur Age.
    
 ### Menangani Outlier
-![Cek Nilai 0](https://github.com/daffahaidarfarrass/predictive-analytic-diabetes/blob/main/images/cek_nilai_0.png)
+
+#### Cek nilai 0
+![cek_nilai_0](https://github.com/user-attachments/assets/93e489f3-4757-46dd-91fe-701cc6d99c40)
 
 Setelah dicek ternyata terdapat banyak sekali yang bernilai 0, karena terdapat banyak sekali nilai 0 dan akan sangat berpengaruh ke peforma machine learning jika semuanya di drop. Maka, nilai 0 disini akan di ganti dengan nilai rata-rata pada setiap fitur. Terutama pada fitur SkinThickness, BMI, Glucose, dan BloodPressure yang tidak mungkin bernilai 0.
 
 ### Mengganti nilai 0 dengan nilai rata-rata
-![Mengganti nilai 0](https://github.com/daffahaidarfarrass/predictive-analytic-diabetes/blob/main/images/ganti_nilai_0.png)
 
-lalu selanjutnya adalah menangangi kesalah nilai yang dimana itu adalah hal yang tidak mungkin di dunia medis
+![ganti_nilai_0](https://github.com/user-attachments/assets/b054a842-f585-495d-8a3f-5d0d78de9b82)
 
-![Mengganti nilai yang tidak masuk akal](https://github.com/daffahaidarfarrass/predictive-analytic-diabetes/blob/main/images/nilai_tidak_masuk_akal.png)
+Insight:
+- Nilai 0 pada variabel-variabel ini secara medis tidak masuk akal:
+ - `BMI`: Nilai BMI = 0 berarti berat badan tidak ada, yang tidak mungkin secara biologis.
+ - `Glucose`: Kadar glukosa darah 0 berarti tidak ada glukosa dalam darah, yang tidak mungkin pada manusia hidup.
+ - `SkinThickness`: Ketebalan kulit tidak mungkin 0 mm, kecuali terjadi kesalahan pengukuran.
+ - `BloodPressure`: Tekanan darah 0 tidak kompatibel dengan kehidupan.
+
+
+![nilai_tidak_masuk_akal](https://github.com/user-attachments/assets/f500788f-3ba6-440d-98de-c766077d319b)
+
+Insight:
+- Kadar glukosa darah < 50 mg/dL atau > 170 mg/dL adalah nilai ekstrem:
+ - `glucose` < 50 mg/dL: Disebut hipoglikemia berat, yang tidak umum terjadi pada individu tanpa diabetes.
+ - `glucose` > 170 mg/dL: Biasanya menunjukkan hiperglikemia, yang lebih sering terjadi pada individu dengan diabetes.
 
 
 
 ### Data Spliting
 Setelah melakukan analisis terhadap data yang akan digunakan, selanjutnya adalah melakukan data preparation. Pertama kita akan melakukan splitting data train dan data test sebesar 80:20. 
 
-![Data Spliting](https://github.com/daffahaidarfarrass/predictive-analytic-diabetes/blob/main/images/Data_Spliting.png)
+![Data_Spliting](https://github.com/user-attachments/assets/51e76968-3ada-4cf3-85f6-5df7ee8a1656)
+
 
 ### SMOTE dan Standardisasi Fitur
 Karena terlihat persebaran data train 0 dan 1 terlihat tidak seimbang (imbalanced data) maka saya melakukan SMOTE untuk menyeimbangkan data train. Lalu, selanjutnya saya melakukan Standardisasi Fitur untuk digunakan pada beberapa model.
 
 ![SMOTE dan Standardisasi Fitur](https://github.com/daffahaidarfarrass/predictive-analytic-diabetes/blob/main/images/smote_Standardisasi_Fitur.png)
+
+Saya menggunakan pembagian 80:20 yang merupakan rasio umum dalam splitting data
 
 
 ## Modeling
@@ -453,8 +474,9 @@ Setelah semua model dijalankan dan menguji data menggunakan 5 model machine lear
   - FP (False Positive): Prediksi salah, prediksi positif tapi sebenarnya negatif.
   - FN (False Negative): Prediksi salah, prediksi negatif tapi sebenarnya positif
 - Contoh Tampilan
-- 
-![Contoh Tampilan](https://github.com/daffahaidarfarrass/predictive-analytic-diabetes/blob/main/images/CM_Random_Forest.png)
+
+
+
 
 #### 2. Akurasi
 Akurasi Mengukur proporsi total prediksi yang benar. Tidak cocok jika data tidak seimbang.
