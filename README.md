@@ -475,23 +475,26 @@ Setelah semua model dijalankan dan menguji data menggunakan 5 model machine lear
   - FN (False Negative): Prediksi salah, prediksi negatif tapi sebenarnya positif
 - Contoh Tampilan
 
+![CM_Random_Forest](https://github.com/user-attachments/assets/aa28c2da-e9b5-44a8-be05-c9afa4dc8cd7)
 
 
 
 #### 2. Akurasi
 Akurasi Mengukur proporsi total prediksi yang benar. Tidak cocok jika data tidak seimbang.
 
-![Akurasi](https://github.com/daffahaidarfarrass/predictive-analytic-diabetes/blob/main/images/Akurasi.png)
+![Akurasi](https://github.com/user-attachments/assets/2829c2fe-4222-4b3e-8f3e-da879ef1fecb)
+
 
 #### 3. F1-Score
 F1-Score adalah Harmonik rata-rata dari presisi dan recall. Cocok untuk data tidak seimbang.
 
-![F1-Score](https://github.com/daffahaidarfarrass/predictive-analytic-diabetes/blob/main/images/F1-Score.png)
+![F1-Score](https://github.com/user-attachments/assets/23b6a2c4-e9af-4c96-a176-3be34c1f8639)
+
 
 #### 4. Recall
 Recall (juga dikenal sebagai Sensitivity atau True Positive Rate) adalah metrik evaluasi yang menunjukkan seberapa baik model mendeteksi semua instance positif dalam data.
 
-![Recall](https://github.com/daffahaidarfarrass/predictive-analytic-diabetes/blob/main/images/Recall.png)
+![Recall](https://github.com/user-attachments/assets/1743c300-820d-4044-a99f-c8241262cc90)
 
 
 keterangan :
@@ -502,7 +505,8 @@ keterangan :
 ### Penerapan Matriks Confusion
 #### 1. Random Forest
 
-![Confusion Matrix Random Forest](https://github.com/daffahaidarfarrass/predictive-analytic-diabetes/blob/main/images/CM_Random_Forest.png)
+![CM_Random_Forest](https://github.com/user-attachments/assets/2d157733-17cb-41fd-ae11-921572b7d883)
+
 
 Berdasarkan confusion matrix diatas:
 - 360 responden diklasifikasikan benar sebagai TIDAK DIABETES (True Negative).
@@ -512,7 +516,7 @@ Berdasarkan confusion matrix diatas:
 
 #### 2. Decision Tree
 
-![Confusion Matrix Decision Tree](https://github.com/daffahaidarfarrass/predictive-analytic-diabetes/blob/main/images/CM_Decision_Tree.png)
+![CM_Decision_Tree](https://github.com/user-attachments/assets/53f3de98-cf15-46f6-bbd0-039970d0e517)
 
 Berdasarkan confusion matrix diatas:
 - 320 responden diklasifikasikan benar sebagai TIDAK DIABETES (True Negative).
@@ -523,25 +527,30 @@ Berdasarkan confusion matrix diatas:
 
 #### 3. AdaBoosting
 
-![Confusion Matrix AdaBoosting](https://github.com/daffahaidarfarrass/predictive-analytic-diabetes/blob/main/images/CM_AdaBoosting.png)
+![CM_AdaBoosting](https://github.com/user-attachments/assets/37844010-8e94-487a-9084-6d719e4aea2d)
+
 
 Berdasarkan confusion matrix diatas:
 - 365 responden diklasifikasikan benar sebagai TIDAK DIABETES (True Negative).
 - 180 responden diklasifikasikan benar sebagai DIABETES (True Positive).
 - 2 responden diklasifikasikan salah sebagai DIABETES, padahal sebenarnya TIDAK DIABETES (False Positive).
 - 7 responden diklasifikasikan salah sebagai TIDAK DIABETES, padahal sebenarnya DIABETES (False Negative).
+  
 #### 4. SVM
 
-![Confusion Matrix SVM](https://github.com/daffahaidarfarrass/predictive-analytic-diabetes/blob/main/images/CM_SVM.png)
+![CM_SVM](https://github.com/user-attachments/assets/c8eedef1-061a-4f08-b2a0-a0a8516e3f67)
+
 
 Berdasarkan confusion matrix diatas:
 - 311 responden diklasifikasikan benar sebagai TIDAK DIABETES (True Negative).
 - 151 responden diklasifikasikan benar sebagai DIABETES (True Positive).
 - 56 responden diklasifikasikan salah sebagai DIABETES, padahal sebenarnya TIDAK DIABETES (False Positive).
 - 36 responden diklasifikasikan salah sebagai TIDAK DIABETES, padahal sebenarnya DIABETES (False Negative).
+  
 #### 5. KNN
 
-![Confusion Matrix KNN](https://github.com/daffahaidarfarrass/predictive-analytic-diabetes/blob/main/images/CM_KNN.png)
+![CM_KNN](https://github.com/user-attachments/assets/df1b34db-924f-481e-8771-d754b4d0bfdd)
+
 
 Berdasarkan confusion matrix diatas:
 - 313 responden diklasifikasikan benar sebagai TIDAK DIABETES (True Negative).
@@ -561,7 +570,8 @@ Berdasarkan confusion matrix diatas:
 
 ## Kesimpulan
 
-![Kesimpulan Fitur yang mempengaruhi](https://github.com/daffahaidarfarrass/predictive-analytic-diabetes/blob/main/images/Kesimpulan_fitur.png)
+![Kesimpulan_fitur](https://github.com/user-attachments/assets/5970fd8e-8068-471d-9a6b-59a958eab92a)
+
 
 1. Berdasarkan data yang diperolah, menunjukan Fitur utama yang memengaruhi kemungkinan diabetes adalah `Glucose`, `BMI`, `Age`, dan `Pregnancies`. ke-4 faktor ini sangat berpengaruh pada perhitungan prediksi diabetes.
 2. Setelah menguji data menggunakan 5 model machine learning, Model AdaBoosting memberikan performa terbaik dan dapat diandalkan untuk klasifikasi kasus diabetes dibandingkan model lainnya berdasarkan skor akurasi, skor F1, dan jumlah kesalahan klasifikasi yang paling sedikit.
