@@ -160,8 +160,12 @@ Top 10 dengan persentase paling banyak
 |39\.0|70|2\.5|
 |31\.0|69|2\.5|
 
+![SkinThickness](https://github.com/user-attachments/assets/7cb5ebea-fa8b-45f2-8b28-ddb43c486c7e)
 
-
+Insight:
+- Ada 800 individu dengan nilai ketebalan kulit 0 mm.
+- 28.9% dari total populasi memiliki nilai ketebalan kulit 0 mm.
+- Nilai "0" kemungkinan besar mencerminkan data yang hilang, bukan pengukuran sebenarnya.
 
 ### Insulin
 
@@ -179,8 +183,12 @@ Top 10 dengan persentase paling banyak
 |135|23|0\.8|
 |76|22|0\.8|
 
+![Insulin](https://github.com/user-attachments/assets/5235e630-f9bc-4ede-8054-bd1ba91b1e24)
 
-
+Insight:
+- Ada 1330 individu dengan nilai ketebalan kulit 0 mm.
+- 48% dari total populasi memiliki nilai ketebalan kulit 0 mm.
+- Nilai "0" kemungkinan besar mencerminkan data yang hilang, bukan pengukuran sebenarnya.
 
 ### BMI
 
@@ -198,8 +206,12 @@ Top 10 dengan persentase paling banyak
 |32\.9|33|1\.2|
 |30\.1|31|1\.1|
 
+![BMI](https://github.com/user-attachments/assets/8fe7725f-67c9-4810-9382-d6c5c1536664)
 
-
+Insight:
+- Ada 46 individu memiliki nilai BMI 32.0.
+- 1.7% dari total populasi memiliki BMI 32.0.
+- Nilai BMI 0.0 muncul sebanyak 39 sampel (1.4%). Nilai ini tidak realistis dan kemungkinan besar mencerminkan missing values (data yang hilang).
 
 ### DiabetesPedigreeFunction
 
@@ -217,8 +229,12 @@ Top 10 dengan persentase paling banyak
 |0\.292|16|0\.6|
 |0\.551|16|0\.6|
 
+![DiabetesPedigreeFunction](https://github.com/user-attachments/assets/9fa01b23-3833-471b-964c-811e3fe383e5)
 
-
+Insight:
+- Ada 22 individu memiliki nilai DPF sebesar 0.258.
+- 0.8% dari total populasi memiliki nilai DPF 0.258. 
+- Distribusi data yang tersebar.
 
 ### Age
 
@@ -236,26 +252,31 @@ Top 10 dengan persentase paling banyak
 |29|99|3\.6|
 |31|82|3\.0|
 
+![Age](https://github.com/user-attachments/assets/f95e0a01-f15f-49b6-84d6-0c54fbc2cde4)
 
-
+Insight:
+- Ada 264 individu yang berusia 22 tahun.
+- 22 tahun mencakup 9.5% dari total populasi.
+- Distribusi pola data menurun
 
 ## Multivariate Analysis
 ### Umur vs Kondisi Diabetes
 
-![Umur vs Kondisi Diabetes](https://github.com/daffahaidarfarrass/predictive-analytic-diabetes/blob/main/images/Umur_Diabetes.png)
+![Umur_Diabetes](https://github.com/user-attachments/assets/20536ff4-e675-4728-973e-c67a253d563e)
+
 
 Orang yang menderita diabetes cenderung berusia lebih tua, namun faktor usia bukan satu-satunya penentu karena ada banyak variasi usia di kedua kelompok. Analisis ini menunjukkan pentingnya mempertimbangkan usia sebagai salah satu variabel penting dalam deteksi risiko diabetes, meskipun tidak cukup berdiri sendiri. Terlihat banyak outlier usia tinggi pada kelompok yang tidak menderita (usia di atas 60 tahun). Bisa menunjukkan bahwa tidak semua lansia menderita diabetes, ada faktor lain yang mungkin melindungi (gaya hidup, genetik, dll).
 
 ### BMI vs Kondisi Diabetes
 
-![BMI vs Kondisi Diabetes](https://github.com/daffahaidarfarrass/predictive-analytic-diabetes/blob/main/images/BMI_Diabetes.png)
+
 
 Terdapat kecenderungan bahwa individu yang menderita diabetes memiliki BMI yang lebih tinggi dibanding yang tidak menderita.
 
 
 ### Glukosa vs Kondisi Diabetes
 
-![Glukosa vs Kondisi Diabetes](https://github.com/daffahaidarfarrass/predictive-analytic-diabetes/blob/main/images/Glucose_Diabetes.png)
+
 
 Nilai glukosa yang tinggi sangat berkorelasi dengan kondisi diabetes. Distribusinya menunjukkan bahwa penderita diabetes cenderung memiliki glukosa darah yang lebih tinggi secara signifikan.
 
